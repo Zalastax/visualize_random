@@ -85,7 +85,7 @@ int main(int argc, char * args[]) {
 	}
     SDL_Init(SDL_INIT_VIDEO);
 
-    SDL_Window * sdlWindow = SDL_CreateWindow("My Game Window",
+    SDL_Window * sdlWindow = SDL_CreateWindow("Visualize PRNG",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         640, 480,

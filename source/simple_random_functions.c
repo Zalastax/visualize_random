@@ -81,8 +81,8 @@ uint32 xorshift(void) {
 /* number and carry packed within the same 32 bit integer.        */
 /******************************************************************/
 
-static unsigned int SEED_X = 521288629;
-static unsigned int SEED_Y = 362436069;
+static uint32 SEED_X = 521288629;
+static uint32 SEED_Y = 362436069;
 
 
 uint32 conc_16_random ()
@@ -106,7 +106,7 @@ uint32 conc_16_random ()
 }
 
 
-void rand_seed_conc_16 (unsigned int seed1, unsigned int seed2)
+void rand_seed_conc_16 (uint32 seed1, uint32 seed2)
 {
   if (seed1) SEED_X = seed1;   /* use default seeds if parameter is 0 */
   if (seed2) SEED_Y = seed2;
@@ -116,10 +116,10 @@ void rand_seed_conc_16 (unsigned int seed1, unsigned int seed2)
 
 static uint32 s1=390451501, s2=613566701, s3=858993401;  /* The seeds */
 static uint32 mask1, mask2, mask3;
-static int shft1, shft2, shft3, k1=31, k2=29, k3=28;
+static uint32 shft1, shft2, shft3, k1=31, k2=29, k3=28;
 
 /* use either of the following two sets of parameters*/
-static int q1=13, q2=2, q3=3, p1=12, p2=4, p3=17;
+static uint32 q1=13, q2=2, q3=3, p1=12, p2=4, p3=17;
 /* static int q1=3, q2=2, q3=13, p1=20, p2=16, p3=7; */
 
 
@@ -147,9 +147,9 @@ void rand_seed_tausworth (uint32 a, uint32 b, uint32 c)
     mask1 = x << (32-k1);
     mask2 = x << (32-k2);
     mask3 = x << (32-k3);
-    if (a > (1<<shft1)) s1 = a;
-    if (b > (1<<shft2)) s2 = b;
-    if (c > (1<<shft3)) s3 = c;
+    if (a > (uint32)(1<<shft1)) s1 = a;
+    if (b > (uint32)(1<<shft2)) s2 = b;
+    if (c > (uint32)(1<<shft3)) s3 = c;
     rand();
 }
 

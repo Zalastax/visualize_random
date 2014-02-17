@@ -24,7 +24,7 @@ uint32 *createdata(int num,char mode)
 {
     int i = 0;
     uint32 *ptr;
-	static random_function random_functions[]={system_rand,rand_lsfr,randomMT,autoranval,lcrand,rand_with_array,xorshift,rand_qpr,conc_16_random};
+	static random_function random_functions[]={system_rand,rand_lsfr,randomMT,autoranval,lcrand,rand_with_array,xorshift,rand_qpr,conc_16_random,rand_tausworth};
 
     ptr = (uint32 *)malloc(sizeof(uint32)*num);
 	random_function selected_random_function = random_functions[mode-1];
@@ -77,8 +77,10 @@ int main(int argc, char * args[]) {
 	s_lcrand(time(NULL));
 	s_rand_qpr(0, 0);
 	int selected_mode = 999999;
-	while(selected_mode>9){
-		printf("Select random function by pressing number key\n1:Windows random \t2:LFSR \t3:Mersenne twister \t4BobByrtle \t5Linear Congruential\t6Random with array \t7xorShift \t8Quadratic Resides \t9Concatenate 16\n");
+	while(selected_mode>10){
+		printf("Select random function by pressing number key\n1:Windows random \t2:LFSR \t3:Mersenne twister"
+		"\t4BobByrtle \t5Linear Congruential\t6Random with array \t7xorShift \t8Quadratic Resides"
+		"\t9Concatenate 16 \t10Tausworth\n");
 		selected_mode = get_int_input();
 	}
     SDL_Init(SDL_INIT_VIDEO);
@@ -86,7 +88,7 @@ int main(int argc, char * args[]) {
     SDL_Window * sdlWindow = SDL_CreateWindow("My Game Window",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        680, 520,
+        640, 480,
         SDL_WINDOW_OPENGL);
 
 
@@ -132,11 +134,6 @@ int main(int argc, char * args[]) {
 
 	
 	
-	SDL_Rect dstrect;
-	dstrect.x = 10;
-	dstrect.y = 10;
-	dstrect.w = 640;
-	dstrect.h = 480;
 	int arr_size = 640 * 480;
 	bool keep_running = true;
     while (keep_running) {
@@ -151,7 +148,7 @@ int main(int argc, char * args[]) {
 		}
 		SDL_UpdateTexture(sdlTexture, NULL, pixels, 640 * sizeof(Uint32));
         SDL_RenderClear(sdlRenderer);
-        SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, &dstrect);
+        SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, NULL);
         SDL_RenderPresent(sdlRenderer);
         SDL_Delay(20);
 		keep_running = handle_events(&camData);

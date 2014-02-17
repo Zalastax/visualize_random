@@ -1,0 +1,1 @@
+Feel free to add more random functions or to provide better support for cross-compilation

@@ -2,7 +2,7 @@ Release/
 Debug/
 Output/
 CMakeFiles/
-*.bat
 cmake_install.cmake
 CMakeCache.txt
 Makefile
+*.bat
